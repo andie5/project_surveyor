@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1 class="">Survey Builder</div>
+    <!-- <hr /> -->
+  </div>
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p>1. Build Survey | <strong>2. Add Questions</strong></p>
+    </div>
+    <div class"col-md-12">
+      <p>Next, fill in the questions</p>
+      <h6>Title:</h6>
+      <p><%= @survey.title %></p>
+      <h6>Description:</h6>
+      <p><%= @survey.description %></p>
+    </br>
+    </div>
+  </div>
+  <div class="row">
+    <div class"col-md-12">
+      <%= form_for(@survey) do |s| %>
+        <h6>Add a question:</h6>
+        <em>Choose what type of questions to add</em>
+        <p>
+          <%= s.select :question_type, 
+            [
+              ['Multiple Choice', 1],
+              ["Range", 2]
+            ]
+           %></p>
+        <%= s.submit "Add a New Question", class: "btn btn-primary btn-lg btn-block" %>
+      <% end %>
+      </br>
+    </div>
+    <div class"col-md-12"> 
+      
+      <p>RENDER A PARTIAL TO SHOW EXISTING QUESTIONS, </p>
+      </br>
+    </div>
+  </div>
+</div>

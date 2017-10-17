@@ -1,0 +1,2 @@
+class RangeQuestion < ApplicationRecord
+end

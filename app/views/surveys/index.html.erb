@@ -1,0 +1,25 @@
+<nav>
+  <h1>Homepage</h1>
+  <p>This is the home of all surveys</p>
+  </br>
+
+  <h4>Create Survey</h4>
+  <p><%= link_to "Let's start creating surveys!", new_survey_path %></p>
+  </br>
+
+  <h4>View Surveys</h4>
+  <% @surveys.each do | survey | %>
+    <table class="table table-striped table-bordered">
+      <tbody>
+         <tr>
+          <td><%= survey.title %></td>
+        </tr>
+        <tr>
+          <td><%= survey.description %></td>
+        </tr>
+      </tbody>
+    </br>
+    </table>
+  <% end %>
+
+</nav>
