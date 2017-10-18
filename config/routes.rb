@@ -4,6 +4,23 @@ Rails.application.routes.draw do
 
   root 'surveys#index'
   resources :surveys do
-    resources :questions
+    resources :multi_questions
+    resources :range_questions
   end
+
+  resources :options
 end
+
+# class Question < ApplicationRecord
+
+# end
+
+# class MultiQuestion < Question
+#   has_many :options
+#   validate :within_max_options
+
+
+#   def within_max_options 
+#     errors.add("too many options!") if options.count > 4
+#   end
+# end

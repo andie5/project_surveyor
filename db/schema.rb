@@ -10,33 +10,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171016223842) do
+ActiveRecord::Schema.define(version: 20171018212234) do
+
+  create_table "choices", force: :cascade do |t|
+    t.string   "option"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "multi_answers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "question_id"
+    t.string   "answer"
   end
 
   create_table "multi_questions", force: :cascade do |t|
-    t.string   "title"
+    t.string   "content"
     t.integer  "options"
     t.string   "options_selected"
-    t.string   "required"
+    t.boolean  "required"
     t.integer  "survey_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
   create_table "range_answers", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "question_id"
+    t.string   "answer"
   end
 
   create_table "range_questions", force: :cascade do |t|
-    t.string   "title"
+    t.string   "content"
     t.string   "min_range"
     t.integer  "max_range"
-    t.string   "required"
+    t.boolean  "required"
     t.integer  "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

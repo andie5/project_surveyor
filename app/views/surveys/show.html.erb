@@ -18,22 +18,23 @@
   </div>
   <div class="row">
     <div class"col-md-12">
-      <%= form_for(@survey) do |s| %>
-        <h6>Add a question:</h6>
-        <em>Choose what type of questions to add</em>
-        <p>
-          <%= s.select :question_type, 
-            [
-              ['Multiple Choice', 1],
-              ["Range", 2]
-            ]
-           %></p>
-        <%= s.submit "Add a New Question", class: "btn btn-primary btn-lg btn-block" %>
-      <% end %>
+      <h6>Add a question:</h6>
+      <em>Choose what type of questions to add</em>
+      
+        <%= form_tag @survey do %>
+            <p><%= select_tag(
+                "question_type", 
+                options_for_select([["Multiple Choice"] ,["Range Question"]])
+                ) %>
+            </p>
+          <p><%= submit_tag "Add a New Question", class: "btn btn-primary btn-group btn-group" %></p>
+        <% end %>
+
+      <!-- <%= hidden_field_tag :id, :value => @survey.id %> -->
       </br>
     </div>
     <div class"col-md-12"> 
-      
+     
       <p>RENDER A PARTIAL TO SHOW EXISTING QUESTIONS, </p>
       </br>
     </div>

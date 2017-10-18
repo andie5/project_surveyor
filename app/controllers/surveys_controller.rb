@@ -21,6 +21,8 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
+# find a way to retun the question_type
+
   end
 
 
