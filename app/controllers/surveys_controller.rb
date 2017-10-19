@@ -21,8 +21,24 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
-# find a way to retun the question_type
 
+  end
+
+  def edit
+    @survey = Survey.find(params[:id])
+    @question_type ||= params[:question_type]
+  end
+
+  def update
+    @survey = Survey.find(params[:id])
+
+    if params[:question_type] == "Multiple Choice"
+      redirect_to new_survey_question_path(@survey)
+      flash.now[:success] = "Created Multiple Choice Question"
+    elsif params[:choice_type] == "Range Question"
+      redirect_to new_survey_question_path(@survey)
+      flash.now[:success] = "Created Range Question"
+    end
   end
 
 

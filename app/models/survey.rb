@@ -1,6 +1,16 @@
 class Survey < ApplicationRecord
-  has_many :multi_questions, :dependent => :destroy
-  has_many :range_questions, :dependent => :destroy
-  has_many :multi_answers, :through => :multi_questions
-  has_many :range_answers, :through => :range_questions
+  has_many :questions, :dependent => :destroy
+  has_many :answers, :through => :questions
+  # accepts_nested_attributes_for :questions,
+                                # :reject_if => :all_blank
+
+
+  def check_question_type(type)
+    s = ""
+    if self.type == "Multiple Choice"
+      s = "multi"
+    else
+      s = "range"
+    end
+  end
 end

@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171018212234) do
+ActiveRecord::Schema.define(version: 20171019201901) do
+
+  create_table "answers", force: :cascade do |t|
+    t.integer  "question_id"
+    t.string   "question_type"
+    t.string   "answer"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.index ["question_id", "question_type"], name: "index_answers_on_question_id_and_question_type", unique: true
+  end
 
   create_table "choices", force: :cascade do |t|
     t.string   "option"
@@ -29,6 +38,19 @@ ActiveRecord::Schema.define(version: 20171018212234) do
   create_table "multi_questions", force: :cascade do |t|
     t.string   "content"
     t.integer  "options"
+    t.string   "options_selected"
+    t.boolean  "required"
+    t.integer  "survey_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "question_type"
+    t.string   "content"
+    t.string   "min_range"
+    t.integer  "max_range"
+    t.integer  "no_options"
     t.string   "options_selected"
     t.boolean  "required"
     t.integer  "survey_id"

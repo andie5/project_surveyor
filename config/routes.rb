@@ -4,8 +4,7 @@ Rails.application.routes.draw do
 
   root 'surveys#index'
   resources :surveys do
-    resources :multi_questions
-    resources :range_questions
+    resources :questions
   end
 
   resources :options

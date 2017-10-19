@@ -1,3 +1,3 @@
 class Choice < ApplicationRecord
-  belongs_to :multi_questions
+  belongs_to :question
 end
