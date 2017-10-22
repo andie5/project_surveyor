@@ -11,7 +11,7 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
-      redirect_to survey_path
+      redirect_to survey_path(@survey)
       flash[:sucess] = "Survey created successfully"
     else
       redirect_to new_survey_path

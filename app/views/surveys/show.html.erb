@@ -20,8 +20,7 @@
     <div class"col-md-12">
       <h6>Add a question:</h6>
       <em>Choose what type of questions to add</em>
-      
-      <%= form_tag @survey do %>
+      <%= form_tag(new_survey_path(@survey)) do %>
           <p><%= select_tag(
               "question_type", 
               options_for_select([["Multiple Choice"] ,["Range Question"]])
@@ -33,12 +32,5 @@
       </br>
     </div>
   </div>
-  <div class="row">
-    <div class"col-md-12"> 
-     </br>
-      <h6>Existing Questions:</h6>
-      <p>There are no questions yet!</p>
-      </br>
-    </div>
-  </div>
+  <%= render partial: "survey_existing_qu", locals: { survey: @survey }%>
 </div>
