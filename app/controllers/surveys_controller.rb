@@ -11,18 +11,19 @@ class SurveysController < ApplicationController
   def create
     @survey = Survey.new(survey_params)
     if @survey.save
-      redirect_to survey_path(@survey)
+      redirect_to edit_survey_path(@survey)
       flash[:sucess] = "Survey created successfully"
     else
-      redirect_to new_survey_path
+      redirect_to surveys_path
       flash[:error] = "Survey not created"
     end
   end
 
-  def show
-    @survey = Survey.find(params[:id])
+  # def show
+  #   @survey = Survey.find(params[:id])
+  #   @question_type ||= params[:question_type]
 
-  end
+  # end
 
   def edit
     @survey = Survey.find(params[:id])
@@ -38,6 +39,9 @@ class SurveysController < ApplicationController
     elsif params[:choice_type] == "Range Question"
       redirect_to new_survey_question_path(@survey)
       flash.now[:success] = "Created Range Question"
+    else
+      redirect_to survey_path
+      flash.now[:error] = "Question not created"
     end
   end
 

@@ -1,26 +1,10 @@
 <div class="row">
-  <div class="col-md-12 text-center">
-    <h1 class="">Survey Builder</div>
-    <!-- <hr /> -->
-  </div>
-  <div class="row">
-    <div class="col-md-12 text-center">
-      <p>1. Build Survey | <strong>2. Add Questions</strong></p>
-    </div>
-    <div class"col-md-12">
-      <p>Next, fill in the questions</p>
-      <h6>Title:</h6>
-      <p><%= @survey.title %></p>
-      <h6>Description:</h6>
-      <p><%= @survey.description %></p>
-    </br>
-    </div>
-  </div>
+    <%= render partial: "shared/survey_header", locals: { survey: @survey }%>
   <div class="row">
     <div class"col-md-12">
       <h6>Add a question:</h6>
       <em>Choose what type of questions to add</em>
-      <%= form_tag(new_survey_path(@survey)) do %>
+      <%= form_tag @survey, {:method => "get"} do %>
           <p><%= select_tag(
               "question_type", 
               options_for_select([["Multiple Choice"] ,["Range Question"]])

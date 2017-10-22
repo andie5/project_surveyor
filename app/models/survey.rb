@@ -1,8 +1,8 @@
 class Survey < ApplicationRecord
   has_many :questions, :dependent => :destroy
+  has_many :choices, :through => :questions
+
   has_many :answers, :through => :questions
-  # accepts_nested_attributes_for :questions,
-                                # :reject_if => :all_blank
 
 
   def check_question_type(type)

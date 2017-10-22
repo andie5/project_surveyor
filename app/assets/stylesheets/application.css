@@ -13,3 +13,4 @@
  *= require_tree .
  *= require_self
  */
+.hline { width:100%; height:1px; background: #d3d3d3; margin-bottom: 10px }

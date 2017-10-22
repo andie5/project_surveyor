@@ -12,9 +12,9 @@
 
   <body>
     <div class="container">
-       <%= render "shared/navbar" %>
        <%= flash[:error] %><br>
        <%= flash[:success] %><br>
+       <%= render "shared/navbar" %>
       <%= yield %>
     </div>
   </body>

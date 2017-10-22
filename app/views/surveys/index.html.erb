@@ -1,21 +1,31 @@
 <nav>
-  <h1>Homepage</h1>
-  <p>This is the home of all surveys</p>
+  <h1 class="text-center">Surveyor:</h1>
+  <h1 class="text-center">Tell Me #allthethings!</h1>
+  </br>
+  <p>Click on a survey below to take it or create one of your own!</p>
+
+  <p><%= button_to "Create a new Survey", new_survey_path, :class => "btn btn-primary btn-group btn-group", :method => :get %></p>
   </br>
 
-  <h4>Create Survey</h4>
-  <p><%= link_to "Let's start creating surveys!", new_survey_path %></p>
-  </br>
-
-  <h4>View Surveys</h4>
+  <h4>Take a Survey</h4>
   <% @surveys.each do | survey | %>
     <table class="table table-striped table-bordered">
       <tbody>
-         <tr>
+        <tr>
           <td><%= survey.title %></td>
+          <td></td>
         </tr>
         <tr>
-          <td><%= survey.description %></td>
+          <td><em><%= survey.description %></em></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><em>RESPONSES</em></td>
+          <td></td>
+        </tr>
+        <tr>
+          <td><%= button_to "Take Survey", "#", :class => "btn btn-primary btn-group btn-group", :method => :get %></td>
+          <td><%= button_to "View Results", "#", :class => "btn btn-primary btn-group btn-group", :method => :get %></td>
         </tr>
       </tbody>
     </br>

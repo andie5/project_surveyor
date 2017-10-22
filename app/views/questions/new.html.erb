@@ -1,0 +1,30 @@
+<div class="row">
+  <%= render partial: "shared/survey_header", locals: { survey: @survey }%>
+  <div class="hline"></div>
+  <div class="row">
+    <div class"col-md-12 text-center">
+      <h6>Add a Multiple Choice Question:</h6>
+      <p><strong>1. Select Options</strong> | 2. Add Question Text</p>
+      <%= form_for(new_survey_question_path(@survey)) do |qu| %>
+        <em>How many options should the question have?</em>
+        <p><%= qu.select :no_options,
+              [["1", 1] ,["2", 2],["3", 3]]
+              %></p>
+        <p><em>How many options can be selected?</em></p>
+        <p><%= qu.radio_button(:options_selected, "Just One") %> 
+            <%= label :options_selected, "Just One" %></p>
+
+        <p><%= qu.radio_button(:options_selected, "Multiple", checked: :true) %> <%= label :options_selected, "Multiple" %></p>
+        <p><em>Is this question required?</em></p>
+        <p><%= qu.radio_button(:required, true) %> 
+            <%= label :required, "Yes" %></p>
+
+        <p><%= qu.radio_button(:required, false) %> <%= label :required, "No" %></p>
+       <%= qu.submit "Continue to the next Step", class: "btn btn-primary btn-lg btn-block" %>
+      <% end %>
+
+      </br>
+    </div>
+  </div>
+  <%= render partial: "shared/survey_existing_qu", locals: { survey: @survey } %>
+</div>
