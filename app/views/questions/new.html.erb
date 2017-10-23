@@ -6,7 +6,7 @@
       <h6>Add a Multiple Choice Question:</h6>
       <p><strong>1. Select Options</strong> | 2. Add Question Text</p>
        <!-- form_for(new_survey_question_path(@survey)) do |qu| %> -->
-       <%= form_for[@survey, @question] do |qu| %>
+       <%= form_for [@survey, @question] do |qu| %>
         <em>How many options should the question have?</em>
         <p><%= qu.select :no_options,
               [["1", 1] ,["2", 2],["3", 3]]
@@ -27,11 +27,11 @@
                   locals: { 
                     survey: @survey,
                     question: @question,
-                    num_options: qu.no_options,
-                    responses_required: :
-                    qu.options_selected,
-                    required_op:, qu.required
-                      }
+                    num_options: @no_options,
+                    responses_required: 
+                    @options_selected,
+                    required_op: @required
+                      } %>
        <%= qu.submit "Continue to the next Step", class: "btn btn-primary btn-lg btn-block" %>
       <% end %>
 

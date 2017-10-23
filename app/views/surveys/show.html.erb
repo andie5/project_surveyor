@@ -4,7 +4,7 @@
     <div class"col-md-12">
       <h6>Add a question:</h6>
       <em>Choose what type of questions to add</em>
-      <%= form_tag @survey, {:method => "get"} do %>
+      <%= form_tag new_survey_question_path(@survey), {:method => "get"} do %>
           <p><%= select_tag(
               "question_type", 
               options_for_select([["Multiple Choice"] ,["Range Question"]])
@@ -16,5 +16,5 @@
       </br>
     </div>
   </div>
-  <%= render partial: "survey_existing_qu", locals: { survey: @survey }%>
+  <%= render partial: "shared/survey_existing_qu", locals: { survey: @survey }%>
 </div>

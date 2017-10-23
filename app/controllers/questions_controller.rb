@@ -3,13 +3,26 @@ class QuestionsController < ApplicationController
   def new
     @survey = Survey.find(params[:survey_id])
     @question = Question.new
+
+
+    @question_type = params[:question][:question_type]
+    @options_selected = params[:question][:options_selected]
+    @required = params[:question][:required]
+    @num_options = params[:question][:options]
+
+    # takes the name of one or more associations that you'd like to load at the same time as your original object and brings them into memory.
+    @survey.questions.includes(:choices)
+
+     # Build the choices
+    @num_options.to_i.times { @question.choices.build }
+
   end
 
   def create
     @question = Question.new(question_params)
     @survey = @question.survey
     if @question.save
-      redirect_to survey_question(@survey, @question)
+      redirect_to survey_question_path(@survey, @question)
       flash[:success] = "New question created successfully"
     else
       redirect_to survey_path
@@ -40,9 +53,8 @@ class QuestionsController < ApplicationController
                                      :no_options,
                                      :options_selected,
                                      :required,
-                                     :survey_id
+                                     :survey_id,
                                      :choices_attributes => [:option,
-                                                            :question_id,
                                                             :_destroy]
                                      )
   end
