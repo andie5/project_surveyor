@@ -45,6 +45,17 @@ class SurveysController < ApplicationController
     end
   end
 
+  def destroy
+    session[:return_to] ||= request.referer
+    @survey = Survey.find(params[:id])
+    if @survey.destroy
+      flash[:success] = "Survey deleted successfully."
+      redirect_to surveys_path
+    else
+      flash[:error] = "Survey not deleted"
+      redirect_to session.delete(:return_to)
+  end
+
 
   private
 

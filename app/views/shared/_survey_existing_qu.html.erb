@@ -11,9 +11,10 @@
             <p> <%= c.option %></p>
             </br>
           <% end %>
-        <p><%= link_to "Remove Question", survey_question_path(survey, question),
-                      data: { confirm: "Are you sure?" },
-                      method: :delete %></p>
+        <p>
+           <!-- link_to "Remove Question", survey_question_path(survey, question), -->
+                      <!-- data: { confirm: "Are you sure?" }, -->
+                      <!-- method: :delete %></p> -->
       <% end %>
     <% else %>
       <p>There are no questions yet!</p>

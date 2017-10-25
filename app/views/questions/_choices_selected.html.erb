@@ -2,22 +2,27 @@
   <div class="hline"></div>
   <div class="row">
     <div class"col-md-12 text-center">
-      <!-- <h6>Add a Multiple Choice Question:</h6> -->
+      <h6>Add a Multiple Choice Question:</h6>
       <p>1. Select Options | <strong>2. Add Question Text</strong></p>
-      <em>Next, add the text for each of your options.</em>
-      <%= form_for[@survey, @question] do |qu| %>
-        <em>What is your question?</em>
-        <p><%= qu.text_field :option %></p>
+        <em>Next, add the text for each of your options.</em>
+        <p><em>What is your question?</em></p>
+        <%= form_for [@survey, @question] do |qu| %>
+          <p><%= qu.text_field :content %></p>
+
+
+          <p><%= qu.text_field :option %></p>
         <%= qu.options.times do |i|%>
           <p><strong><%= "Option #{i}" %></strong></p>
           <p><%= qu.text_field :option %></p>
           <% end %>
-       <%= qu.submit "Add Question", class: "btn btn-primary btn-lg btn-block" %>
+         
+         <%= qu.submit "Add Question", class: "btn btn-primary btn-lg btn-block" %>
       <% end %>
 
       </br>
     </div>
+     <p><%= link_to "Back to the previous step", edit_survey_path(@survey) %>
+    </p>
   </div>
-   <p><%= link_to "Back to the previous step", edit_survey_question_path(@survey, @question) %>
-  </p>
+  
 </div>

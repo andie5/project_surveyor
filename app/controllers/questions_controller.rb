@@ -2,13 +2,16 @@ class QuestionsController < ApplicationController
 
   def new
     @survey = Survey.find(params[:survey_id])
-    @question = Question.new
+    @question_type = params[:question_type]
+
+    @question = @survey.questions.build(:question_type => @question_type)
 
 
-    @question_type = params[:question][:question_type]
-    @options_selected = params[:question][:options_selected]
-    @required = params[:question][:required]
-    @num_options = params[:question][:options]
+    # @question = Question.new
+
+    # @options_selected = params[:question][:options_selected]
+    # @required = params[:question][:required]
+    # @num_options = params[:question][:options]
 
     # takes the name of one or more associations that you'd like to load at the same time as your original object and brings them into memory.
     @survey.questions.includes(:choices)
