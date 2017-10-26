@@ -4,34 +4,48 @@ class QuestionsController < ApplicationController
     @survey = Survey.find(params[:survey_id])
     @question_type = params[:question_type]
 
-    @question = @survey.questions.build(:question_type => @question_type)
-
-
-    # @question = Question.new
-
-    # @options_selected = params[:question][:options_selected]
-    # @required = params[:question][:required]
-    # @num_options = params[:question][:options]
-
+    # @question = @survey.questions.build(:question_type => @question_type)
     # takes the name of one or more associations that you'd like to load at the same time as your original object and brings them into memory.
     @survey.questions.includes(:choices)
-
-     # Build the choices
-    @num_options.to_i.times { @question.choices.build }
-
   end
 
   def create
-    @question = Question.new(question_params)
-    @survey = @question.survey
+    @survey = Survey.find(params[:survey_id])
+    @question = @survey.questions.build(question_params)
     if @question.save
-      redirect_to survey_question_path(@survey, @question)
+      redirect_to edit_survey_question_path(@survey, @question)
       flash[:success] = "New question created successfully"
     else
       redirect_to survey_path
       flash[:error] = "New question not created"
     end
   end
+
+  def edit
+    @survey = Survey.find(params[:survey_id])
+    @question = Question.find(params[:id])
+    # Check if the current number of option choices created is less than what has been specified - as you only what to build the options the first time you edit/create the question, you don't want to keep building the option parameters each time
+    if @question.choices.count < @question.no_options
+      count = @question.no_options - @question.choices.count 
+      count.times do 
+        @question.choices.build
+      end
+    end
+  end
+
+  def update
+    @survey = Survey.find(params[:survey_id])
+    @question = Question.find(params[:id])
+
+    if @question.update_attributes(question_params)
+      redirect_to edit_survey_question_path(@survey, @question)
+      flash[:success] = "Question updated sucessfully"
+    else
+      render :edit
+      flash[:error] = "Question not updated"
+    end
+  end
+
 
   def destroy
     session[:return_to] ||= request.referer
@@ -40,7 +54,7 @@ class QuestionsController < ApplicationController
 
     if @question.destroy
       flash[:success] = "Question deleted successfully."
-      redirect_to edit_survey_question_path(@survey, @question)
+      redirect_to survey_path(@survey)
     else
       flash[:error] = "Question not deleted"
       redirect_to session.delete(:return_to)

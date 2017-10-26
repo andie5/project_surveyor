@@ -1,0 +1,31 @@
+<div class="row">
+  <%= render partial: "shared/survey_header", locals: { survey: @survey }%>
+  <div class="hline"></div>
+    <div class="row">
+      <div class="col-md-12 text-center">
+        <h6>Add a Multiple Choice Question:</h6>
+        <p>1. Select Options | <strong>2. Add Question Text</strong></p>
+      </div>
+      <div>
+          <em>Next, add the text for each of your options.</em>
+          <p><em>What is your question?</em></p>
+          <%= form_for [@survey, @question] do |question| %>
+            <p><%= question.text_field :content %></p>
+            <% i = 0 %>
+            <%= question.fields_for :choices do |choices_fields| %>
+               <% i += 1 %>
+                <p><strong><%= "Option #{i}" %></strong></p>
+                <p><%= choices_fields.text_field :option %></p>
+            <% end %>
+
+            <%= question.submit "Finalise Question", class: "btn btn-primary btn-lg btn-block" %>
+          <% end %>
+
+        </br>
+         <p><%= link_to "Back to the previous step", edit_survey_path(@survey) %>
+        </p>
+     </div>
+    </div>
+  
+  <%= render partial: "shared/survey_existing_qu", locals: { survey: @survey } %>
+</div>

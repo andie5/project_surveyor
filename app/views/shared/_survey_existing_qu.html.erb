@@ -2,20 +2,20 @@
   <div class="hline">
   </br>
   <div class"col-md-12"> 
-    <h6>Existing Questions:</h6>
+    <h5>Existing Questions:</h5>
     <% if survey.questions.exists? %>
       <% survey.questions.each do |question| %>
-        <p><strong><% question.content %></strong></p>
-        <p><em>Question Required: <%= question.required %> No.of options <%= question.no_options %></em></p>
-          <p><%=question.choices.each do |c| %></p>
+        <p><strong><%= question.content %></strong></p>
+        <p><em>Question Required: <%= question.required %> |  No.of options: <%= question.no_options %></em></p>
+          <p><% question.choices.each do |c| %></p>
             <p> <%= c.option %></p>
             </br>
           <% end %>
         <p>
-           <!-- link_to "Remove Question", survey_question_path(survey, question), -->
-                      <!-- data: { confirm: "Are you sure?" }, -->
-                      <!-- method: :delete %></p> -->
-      <% end %>
+         <%= link_to "Remove Question", survey_question_path(survey, question),
+                   data: { confirm: "Are you sure?" },
+                    method: :delete %></p>
+      <% end %> 
     <% else %>
       <p>There are no questions yet!</p>
         </br>

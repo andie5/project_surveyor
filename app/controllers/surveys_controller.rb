@@ -36,7 +36,7 @@ class SurveysController < ApplicationController
     if params[:question_type] == "Multiple Choice"
       redirect_to new_survey_question_path(@survey)
       flash.now[:success] = "Created Multiple Choice Question"
-    elsif params[:choice_type] == "Range Question"
+    elsif params[:question_type] == "Range Question"
       redirect_to new_survey_question_path(@survey)
       flash.now[:success] = "Created Range Question"
     else
@@ -54,6 +54,7 @@ class SurveysController < ApplicationController
     else
       flash[:error] = "Survey not deleted"
       redirect_to session.delete(:return_to)
+    end
   end
 
 

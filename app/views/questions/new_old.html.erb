@@ -2,11 +2,9 @@
   <%= render partial: "shared/survey_header", locals: { survey: @survey }%>
   <div class="hline"></div>
   <div class="row">
-    <div class="col-md-12 text-center">
+    <div class"col-md-12 text-center">
       <h6>Add a Multiple Choice Question:</h6>
       <p><strong>1. Select Options</strong> | 2. Add Question Text</p>
-    </div>
-    <div>
        <!-- form_for(new_survey_question_path(@survey)) do |qu| %> -->
        <%= form_for [@survey, @question] do |qu| %>
         <em>How many options should the question have?</em>
@@ -24,12 +22,20 @@
 
         <p><%= qu.radio_button(:required, false) %> <%= label :required, "No" %></p>
         </br>
-       
+        <!-- Nested fields for options -->
+         <%= render partial: "choices_selected", 
+                  locals: { 
+                    survey: @survey,
+                    question: @question,
+                    num_options: @no_options,
+                    responses_required: 
+                    @options_selected,
+                    required_op: @required
+                      } %>
         <%= qu.submit "Continue to the next Step", class: "btn btn-primary btn-lg btn-block" %>
       <% end %>
-
       </br>
     </div>
   </div>
-   <!-- render partial: "shared/survey_existing_qu", locals: { survey: @survey } %> -->
+  <%= render partial: "shared/survey_existing_qu", locals: { survey: @survey } %>
 </div>
