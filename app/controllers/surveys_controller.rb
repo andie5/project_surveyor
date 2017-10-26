@@ -21,13 +21,12 @@ class SurveysController < ApplicationController
 
   def show
     @survey = Survey.find(params[:id])
-    @question_type ||= params[:question_type]
-
+    # @question_type ||= params[:question_type]
   end
 
   def edit
     @survey = Survey.find(params[:id])
-    @question_type ||= params[:question_type]
+    # @question_type ||= params[:question_type]
   end
 
   def update

@@ -2,9 +2,7 @@ class QuestionsController < ApplicationController
 
   def new
     @survey = Survey.find(params[:survey_id])
-    @question_type = params[:question_type]
-
-    # @question = @survey.questions.build(:question_type => @question_type)
+    @question = @survey.questions.build
     # takes the name of one or more associations that you'd like to load at the same time as your original object and brings them into memory.
     @survey.questions.includes(:choices)
   end
@@ -12,6 +10,11 @@ class QuestionsController < ApplicationController
   def create
     @survey = Survey.find(params[:survey_id])
     @question = @survey.questions.build(question_params)
+
+    @question_type = params[:question_type]
+    puts "The question type is #{@question_type}"
+
+    @question.question_type = params[:question_type]
     if @question.save
       redirect_to edit_survey_question_path(@survey, @question)
       flash[:success] = "New question created successfully"
@@ -46,7 +49,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-
   def destroy
     session[:return_to] ||= request.referer
     @question = Question.find(params[:id])
@@ -75,5 +77,4 @@ class QuestionsController < ApplicationController
                                                             :_destroy]
                                      )
   end
-
 end
