@@ -1,5 +1,7 @@
 class UserResponse < ApplicationRecord
   has_many :answers
-  belog_to :question
   belongs_to :survey
+  accepts_nested_attributes_for :answers, source: :answer,
+                                reject_if: :all_blank, 
+                                allow_destroy: :true
 end

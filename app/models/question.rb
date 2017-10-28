@@ -6,5 +6,5 @@ class Question < ApplicationRecord
   accepts_nested_attributes_for :choices, 
                                 reject_if: :all_blank, 
                                 allow_destroy: :true
-  validates_presence_of :no_options, :question_type, :required on: :update
+  # validates_presence_of :no_options, :question_type, :required on: :update
 end
