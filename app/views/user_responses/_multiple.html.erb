@@ -1,5 +1,5 @@
-<%= ur_fields.fields_for :answers do |answer_fields| %>
-  <%= answer_fields.collection_check_boxes :choice_id, question.choices, :id, :option do |cb| %>
+<%= ur_fields.collection_check_boxes :answer_ids, question.choices, :id, :option do |cb| %>
       <p><%= cb.check_box %> <%= cb.label %></p>
-    <% end %>
 <% end %>
+
+

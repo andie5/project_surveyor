@@ -27,16 +27,19 @@ class UserResponsesController < ApplicationController
     end
   end
 
-  def edit
-    @survey = Survey.find(params[:survey_id])
-  end
+  # def edit
+  #   @survey = Survey.find(params[:survey_id])
+  # end
 
   private
 
   def user_response_params
     params.require(:user_response).permit(answer_ids: [], 
                                      :answers_attributes => [:id,
-                                                        :choice_id,
+                                                        # :question_id,
+                                                        # :question_type,
+                                                        # :answer,
+                                                        :choice_id
                                                         ]
                                      )
   end
