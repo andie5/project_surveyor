@@ -1,0 +1,30 @@
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Survey Taker:</div>
+    <div class="hline"></div>
+  </div>
+  <div class="col-md-12 text-center">
+    <h2><%= @survey.title %></h2>
+   </div>
+  <div class="col-md-12 text-center">
+    <h3><%= @survey.description %></h3>
+    <p><em>Questions marked with an asterix (*) are required</em></p>
+  </div>
+  <div class="row">
+     <%= form_for [@survey, @user_response] do |ur_fields| %>
+      <% @questions.each do |question| %>
+        <h6>
+          <%= asterik?(question) %>
+          <%= question.content %>
+        </h6>
+        <% if one_answer?(question) %>
+           <%= render partial: "just_one", locals: { ur_fields:ur_fields, question: question }%>
+        <% else %>
+          <%= render partial: "multiple", locals: { ur_fields:ur_fields, question: question }%>
+        <% end %>
+      <% end %>
+      <%= ur_fields.submit "Submit your survey", class: "btn btn-primary btn-lg btn-block" %>
+    <% end %>
+    </br>
+  </div>
+</div>

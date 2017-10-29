@@ -24,8 +24,8 @@
           <td></td>
         </tr>
         <tr>
-          <td><%= button_to "Take Survey", "#", :class => "btn btn-primary btn-group btn-group", :method => :get %></td>
-          <td><%= button_to "View Results", "#", :class => "btn btn-primary btn-group btn-group", :method => :get %></td>
+          <td><%= button_to "Take Survey", new_survey_user_response_path(survey), :class => "btn btn-primary btn-group btn-group", :method => :get %></td>
+          <td><%= button_to "View Results", survey_user_responses_path(survey), :class => "btn btn-primary btn-group btn-group", :method => :get %></td>
         </tr>
       </tbody>
     </br>

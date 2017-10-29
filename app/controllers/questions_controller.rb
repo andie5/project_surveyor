@@ -12,9 +12,8 @@ class QuestionsController < ApplicationController
     @question = @survey.questions.build(question_params)
 
     @question_type = params[:question_type]
-    puts "The question type is #{@question_type}"
-
     @question.question_type = params[:question_type]
+    
     if @question.save
       redirect_to edit_survey_question_path(@survey, @question)
       flash[:success] = "New question created successfully"

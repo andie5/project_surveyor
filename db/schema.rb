@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20171027222423) do
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "user_response_id"
+    t.integer  "choice_id"
     t.index ["question_id", "question_type"], name: "index_answers_on_question_id_and_question_type", unique: true
   end
 
@@ -40,13 +41,6 @@ ActiveRecord::Schema.define(version: 20171027222423) do
     t.integer  "survey_id"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
-  end
-
-  create_table "range_answers", force: :cascade do |t|
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "question_id"
-    t.string   "answer"
   end
 
   create_table "surveys", force: :cascade do |t|
