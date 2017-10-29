@@ -56,5 +56,4 @@ ActiveRecord::Schema.define(version: 20171027222423) do
     t.datetime "updated_at", null: false
     t.index ["survey_id"], name: "index_user_responses_on_survey_id", unique: true
   end
-
 end

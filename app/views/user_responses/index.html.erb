@@ -1,1 +1,35 @@
-<h1>Display all user responses</h1>
+<div class="row">
+  <div class="col-md-12 text-center">
+    <h1>Survey Results:</div>
+    <div class="hline"></div>
+  </div>
+  <div class="col-md-12 text-center">
+    <h2><%= @survey.title %></h2>
+    <h4><%= @survey.description %></h4>
+   </div>
+  <div class="col-md-12 text-center">
+    <p><em><%= @survey.user_responses.count %> Responses</em></p>
+  </div>
+  <div class="row">
+    <% @questions.each do |question| %>
+      <h6><%= question.content %></h6>
+      <table class="table table-bordered table-striped">
+        <thead>
+          <tr>
+            <td>Response</td>
+            <td>Count</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% question.choices.each do |question_choice| %>
+            <tr>
+              <td><%= question_choice.option %></td>
+              <td><%= question_choice.answers.count %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      </br>
+    <% end %>
+  </div>
+</div>

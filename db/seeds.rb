@@ -115,11 +115,11 @@ q2_s2.choices.create!(option: "Dog")
 q2_s2.choices.create!(option: "Cat")
 q2_s2.choices.create!(option: "Fish")
 
-puts "Creating choices for survey 2, question 2"
+puts "Creating choices for survey 2, question 3"
 puts "******************************"
-q2_s2.choices.create!(option: "Elephant")
-q2_s2.choices.create!(option: "Monkey")
-q2_s2.choices.create!(option: "Dolphin")
+q3_s2.choices.create!(option: "Elephant")
+q3_s2.choices.create!(option: "Monkey")
+q3_s2.choices.create!(option: "Dolphin")
 
 
 

@@ -1,6 +1,7 @@
 class UserResponsesController < ApplicationController
 
   def index
+    @survey = Survey.find(params[:survey_id])
     @user_responses = UserResponse.all
     @questions = @survey.questions.includes(:choices)
   end
@@ -33,16 +34,10 @@ class UserResponsesController < ApplicationController
   private
 
   def user_response_params
-    params.require(:user_response).permit(:survey_id, 
-                                     :answers_attributes => [
-                                                        :question_id,
-                                                        :question_type,
-                                                        :answer,
+    params.require(:user_response).permit(answer_ids: [], 
+                                     :answers_attributes => [:id,
                                                         :choice_id,
-                                                        :user_response_id,
-                                                        :_destroy]
+                                                        ]
                                      )
   end
-
-
 end
