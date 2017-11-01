@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171027222423) do
+ActiveRecord::Schema.define(version: 20171101215829) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
     t.string   "question_type"
-    t.string   "answer"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
     t.integer  "user_response_id"
@@ -54,6 +53,6 @@ ActiveRecord::Schema.define(version: 20171027222423) do
     t.integer  "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["survey_id"], name: "index_user_responses_on_survey_id", unique: true
   end
+
 end

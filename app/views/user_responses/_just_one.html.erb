@@ -1,8 +1,10 @@
-<%= ur_fields.fields_for :answers do |answer_fields| %>
-  <% unless answer_fields.object.choice_id %>  
-    <%= answer_fields.collection_radio_buttons :choice_id, question.choices, :id, :option do |rb| %>
-        <p><%= rb.radio_button %> <%= rb.label %></p>
-    <% end %>
+<%= ur_fields.fields_for :answer do |answer_fields| %>
+  <%= answer_fields.hidden_field :question_id, value: question.id %>
+  <%= answer_fields.hidden_field :question_type, value: question.question_type %>
+
+
+  <%= answer_fields.collection_radio_buttons :choice_id, question.choices, :id, :option do |rb| %>
+      <p><%= rb.radio_button %> <%= rb.label %></p>
   <% end %>
 <% end %>
 

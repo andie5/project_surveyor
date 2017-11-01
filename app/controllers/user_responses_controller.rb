@@ -3,7 +3,8 @@ class UserResponsesController < ApplicationController
   def index
     @survey = Survey.find(params[:survey_id])
     @user_responses = UserResponse.all
-    @questions = @survey.questions.includes(:choices)
+    # @questions = @survey.questions.includes(:choices)
+    @questions = @survey.questions
   end
 
   def new
@@ -20,7 +21,7 @@ class UserResponsesController < ApplicationController
 
     if @user_response.update(user_response_params)
       redirect_to surveys_path
-      flash[:sucess] = "User answers to question created successfully and survey submitted"
+      flash[:success] = "User answers to question created successfully and survey submitted"
     else
       redirect_to new_survey_user_response_path(@survey)
       flash[:error] = "User answers to questions not created and survey not submitted"
@@ -34,12 +35,12 @@ class UserResponsesController < ApplicationController
   private
 
   def user_response_params
-    params.require(:user_response).permit(answer_ids: [], 
+    params.require(:user_response).permit(:survey_id, 
                                      :answers_attributes => [:id,
-                                                        # :question_id,
-                                                        # :question_type,
-                                                        # :answer,
-                                                        :choice_id
+                                                        :question_id,
+                                                        :question_type,
+                                                        :choice_id,
+                                                        :user_response_id
                                                         ]
                                      )
   end
