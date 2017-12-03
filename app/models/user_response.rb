@@ -1,5 +1,5 @@
 class UserResponse < ApplicationRecord
-  has_many :answers
+  has_many :answers, inverse_of: :user_response
   belongs_to :survey
   accepts_nested_attributes_for :answers,
                                 reject_if: :all_blank, 

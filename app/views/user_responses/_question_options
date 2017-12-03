@@ -1,10 +1,12 @@
+
+
+
 <%= ur_fields.fields_for :answers do |answer_fields| %>
   <%= answer_fields.hidden_field :question_id, value: question.id %>
   <%= answer_fields.hidden_field :question_type, value: question.question_type %>
 
-  <%= answer_fields.collection_check_boxes :choice_id, question.choices, :id, :option do |cb| %>
-        <p><%= cb.check_box %> <%= cb.label %></p>
+  <%= answer_fields.collection_radio_buttons :choice_id, question.choices, :id, :option do |rb| %>
+      <p><%= rb.radio_button %> <%= rb.label %></p>
   <% end %>
 <% end %>
-
 

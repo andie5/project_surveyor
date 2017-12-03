@@ -11,7 +11,8 @@ class UserResponsesController < ApplicationController
     @survey = Survey.find(params[:survey_id])
     @user_response = @survey.user_responses.build
     @questions = @survey.questions.includes(:choices)
-    @user_response.build_answers(@questions)
+    # @user_response.build_answers(@questions)
+    @user_response.answers.build
   end
 
   def create

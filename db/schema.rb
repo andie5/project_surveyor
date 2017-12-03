@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171101215829) do
+ActiveRecord::Schema.define(version: 20171108204735) do
 
   create_table "answers", force: :cascade do |t|
     t.integer  "question_id"
@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20171101215829) do
     t.datetime "updated_at",       null: false
     t.integer  "user_response_id"
     t.integer  "choice_id"
-    t.index ["question_id", "question_type"], name: "index_answers_on_question_id_and_question_type", unique: true
   end
 
   create_table "choices", force: :cascade do |t|

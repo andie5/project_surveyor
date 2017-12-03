@@ -1,4 +1,5 @@
-<%= ur_fields.fields_for :answer do |answer_fields| %>
+
+<%= ur_fields.fields_for :answers do |answer_fields| %>
   <%= answer_fields.hidden_field :question_id, value: question.id %>
   <%= answer_fields.hidden_field :question_type, value: question.question_type %>
 
@@ -7,6 +8,5 @@
       <p><%= rb.radio_button %> <%= rb.label %></p>
   <% end %>
 <% end %>
-
 
 

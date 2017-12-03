@@ -18,7 +18,7 @@
           <%= question.content %>
         </h6>
         <% if one_answer?(question) %>
-           <%= render partial: "just_one", locals: { ur_fields:ur_fields, question: question }%>
+            <%= render partial: "just_one", locals: { ur_fields:ur_fields, question: question }%>
         <% else %>
           <%= render partial: "multiple", locals: { ur_fields:ur_fields, question: question }%>
         <% end %>
